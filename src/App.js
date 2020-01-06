@@ -6,7 +6,6 @@ import Header from './layout/Header';
 import Footer from './layout/Footer';
 
 class App extends Component {
-
   render() {
     return (
       <>
@@ -14,7 +13,6 @@ class App extends Component {
         <Container fixed className="layout-fix">
           <Footer></Footer>
         </Container>
-
       </>
     );
   }
