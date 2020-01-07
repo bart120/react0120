@@ -10,8 +10,6 @@ class Footer extends Component {
         rooms: null
     };
 
-
-
     componentDidUpdate() {
         console.log('update');
     }

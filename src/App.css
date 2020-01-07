@@ -1,3 +1,10 @@
 .layout-fix{
   padding-top: 66px;
 }
+
+.lien{
+  color: white;
+  text-decoration: underline; 
+  padding: 10px;
+  display: inline-block;
+}
