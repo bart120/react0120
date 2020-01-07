@@ -9,21 +9,33 @@ class LoginForm extends Component {
         password: ''
     };
 
-    onChangeInput = (ev) => {
+    onChangeFormField = (ev) => {
         this.setState({ [ev.target.name]: ev.target.value });
+
+    }
+
+    onChangeInput = (obj) => {
+        this.setState(obj);
+
+    }
+
+    onLogin = (ev) => {
+        ev.preventDefault();
         console.log(this.state);
     }
 
+
     render() {
         return (
-            <form noValidate>
+            <form noValidate onSubmit={this.onLogin}>
                 <div>
-                    <InputEmail textLabel="Login" valid />
+                    <InputEmail textLabel="Login" valid onChangeProps={this.onChangeInput} name="email" />
                 </div>
                 <div>
-                    <TextField label="Mot de passe" type="password" name="password" onChange={this.onChangeInput} />
+                    <TextField label="Mot de passe" type="password" name="password" onChange={this.onChangeFormField} />
                 </div>
-                <Button variant="contained" color="primary">Se connecter</Button>
+                <Button type="submit" variant="contained" color="primary" >Se connecter</Button>
+
             </form>
         );
     }
