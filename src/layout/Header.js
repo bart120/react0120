@@ -5,6 +5,9 @@ import AppBar from '@material-ui/core/AppBar';*/
 import { Toolbar, AppBar, Typography, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { logout } from '../redux/actions/AuthenticationActions';
+import { withTranslation } from 'react-i18next';
 
 class Header extends Component {
 
@@ -16,8 +19,13 @@ class Header extends Component {
         //this.setState({ user: JSON.parse(sessionStorage.getItem('USER')) });
     }
 
+    onLogout = () => {
+        this.props.actionLogout();
+    }
+
     render() {
         //console.log('props', this.props);
+        const { t } = this.props;
         return (
             <AppBar>
                 <Toolbar>
@@ -25,14 +33,14 @@ class Header extends Component {
                         MonApp
                     </Typography>
 
-                    <Link to="/" className="lien">Accueil</Link>
+                    <Link to="/" className="lien">{t('header.home')}</Link>
 
-                    <Link to="/rooms/list" className="lien">Salles</Link>
+                    <Link to="/rooms/list" className="lien">{this.props.t('header.rooms')}</Link>
 
-                    <Link to="/rooms/add" className="lien">Ajouter</Link>
+                    <Link to="/rooms/add" className="lien">{this.props.t('header.add')}</Link>
 
                     {this.props.user ?
-                        (<>Bonjour {this.props.user.name} <Button>Se déconnecter</Button></>) :
+                        (<>Bonjour {this.props.user.name} <Button onClick={this.onLogout}>Se déconnecter</Button></>) :
                         (<Link to="/login" className="lien">Se connecter</Link>)
                     }
                 </Toolbar>
@@ -45,4 +53,9 @@ const mapStateReduxToProps = (stateStore) => {
     return { isConnected: stateStore.isConnected, user: stateStore.user };
 }
 
-export default connect(mapStateReduxToProps)(Header);
+const mapActionsToProps = (payload) => {
+    return { actionLogout: bindActionCreators(logout, payload) }
+}
+
+const head = withTranslation()(Header);
+export default connect(mapStateReduxToProps, mapActionsToProps)(head);

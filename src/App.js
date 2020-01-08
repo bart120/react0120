@@ -6,10 +6,20 @@ import Footer from './layout/Footer';
 import Routes from './conf/Routes';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
+import './conf/translation';
+import i18next from 'i18next';
 
 import { BrowserRouter as Router } from 'react-router-dom';
 
 class App extends Component {
+
+  componentDidMount() {
+
+    const browserlang = navigator.language || navigator.userLanguage;
+    //i18next.changeLanguage('en');//browserlang.split('-')[0]);
+    //this.setState({});
+  }
+
   render() {
     return (
       <Provider store={store}>
