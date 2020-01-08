@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { TextField, Button } from '@material-ui/core';
 import InputEmail from './InputEmail';
+import { PropTypes } from 'prop-types';
 
 class LoginForm extends Component {
 
+    static propTypes = {
+        onLoginProps: PropTypes.func
+    }
     state = {
         email: '',
         password: ''
@@ -22,6 +26,7 @@ class LoginForm extends Component {
     onLogin = (ev) => {
         ev.preventDefault();
         console.log(this.state);
+        this.props.onLoginProps(this.state);
     }
 
 

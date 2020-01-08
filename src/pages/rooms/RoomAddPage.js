@@ -25,10 +25,12 @@ class RoomAddPage extends Component {
         ev.preventDefault();
         this.serv.insertRoom(this.state.room).then((data) => {
             this.setState({ message: `La salle a été enregistrée avec l'ID ${data.id}` });
+
         });
     }
 
     render() {
+        console.log(this.props);
         return (
             <>
                 <h3>Ajouter une salle</h3>
