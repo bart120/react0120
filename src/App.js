@@ -16,8 +16,8 @@ class App extends Component {
   componentDidMount() {
 
     const browserlang = navigator.language || navigator.userLanguage;
-    //i18next.changeLanguage('en');//browserlang.split('-')[0]);
-    //this.setState({});
+    i18next.changeLanguage(browserlang.split('-')[0]);
+    this.setState({});
   }
 
   render() {
